@@ -1,8 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import {QUOTES} from "./data/quotes";
 
 export default function App() {
-  const first = QUOTES[0];
+  const [index, setIndex] = useState(0);
+  const quote = QUOTES[index];
+
+  function showNext() {
+    setIndex((i) => (i+1) % QUOTES.length);
+  }
 
   return (
     <main>
@@ -10,10 +16,14 @@ export default function App() {
 
       <section>
         <blockquote>
-          <p>{first.text}</p>
-          {first.author && <footer>- {first.author}</footer>}
+          <p>{quote.text}</p>
+          {quote.author && <footer>- {quote.author}</footer>}
         </blockquote>
       </section>
+
+      <div>
+        <button onClick={showNext}>New Quote</button>
+      </div>
     </main>
   );
 }
