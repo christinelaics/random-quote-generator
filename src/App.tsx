@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import {QUOTES} from "./data/quotes";
+import { getNextIndex } from "./utils/quotes";
 
 export default function App() {
   const [index, setIndex] = useState(0);
   const quote = QUOTES[index];
 
   function showNext() {
-    setIndex((i) => (i+1) % QUOTES.length);
+    setIndex((i) => getNextIndex(i, QUOTES.length));
   }
 
   return (
